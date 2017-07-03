@@ -42,10 +42,10 @@ public class ReservationService {
         });
 
         List<Reservation> reservations = this.reservationRepository.findByDate(new java.sql.Date(date.getTime()));
-        if(null!=reservations){
+        if(reservations!=null){
             reservations.forEach(reservation -> {
                 Guest guest = this.guestRepository.findOne(reservation.getGuestId());
-                if(null!=guest){
+                if(guest!=null){
                     RoomReservation roomReservation = roomReservationMap.get(reservation.getId());
                     roomReservation.setDate(date);
                     roomReservation.setFirstName(guest.getFirstName());
